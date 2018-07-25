@@ -1,6 +1,7 @@
 import { Component,OnInit} from '@angular/core';
 import { Router } from '@angular/router';
-import{ImportServiceComponent} from './importPage.service'
+import{ImportServiceComponent} from './importPage.service';
+import {ProjectDetailServiceComponent} from './pDetail.service';
 
 import {Post} from './post';
 
@@ -9,7 +10,7 @@ import {Post} from './post';
  
   templateUrl:'./html/importPage.component.html',
 
-
+providers: [ProjectDetailServiceComponent]
    //styleUrls: ['./pDetail.component.css'],
 
        
@@ -26,9 +27,10 @@ export class ImportComponent implements OnInit   {
    // priorities=[];
    types:Post[];
    priorities:Post[];
-  
+  features:Post[];
+  modules=[];
 
-   constructor(public importService:ImportServiceComponent,private router: Router){
+   constructor(private importService:ImportServiceComponent,private router: Router,private data:ProjectDetailServiceComponent){
 	//alert("jjjjjjjjjjjj")
 
    }
@@ -36,9 +38,12 @@ export class ImportComponent implements OnInit   {
 
       ngOnInit(){
   	
-
+this.data.projectDetails()
+          .subscribe(Data => this.modules=Data, error => console.log(error));
           this.importService.getTypeDetails()
           .subscribe(data => this.types=data);
+           this.importService.featureDetails()
+          .subscribe(llData => this.features=llData);
 
          // console.log(this.typeDataCollection)
 

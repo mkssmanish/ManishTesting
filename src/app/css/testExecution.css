@@ -1,0 +1,37 @@
+/*body {
+    background-color: cyan;
+    text-align: center;
+    padding: 130px
+}*/
+
+.div1 {
+    margin-right: 18px;
+}
+
+select {
+    width: 150px;
+}
+
+.span1 {
+    margin-left: 100px;
+}
+
+.span2 {
+    margin-left: 100px;
+}
+
+button {
+    padding: 10px;
+    width: 110px;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    height: 50px;
+    width: 600px;
+}
+th, td {
+    padding: 5px;
+    text-align: center;       
+}

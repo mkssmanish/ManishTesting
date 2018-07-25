@@ -2,7 +2,7 @@ import { Component} from '@angular/core';
 import{ModuleServiceComponent} from './modulePage.service'
 
 @Component({
-   // selector: 'app-module',
+    selector: 'app-module',
  
   templateUrl:'./html/modulePage.component.html',
 
