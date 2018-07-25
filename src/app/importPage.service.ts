@@ -24,4 +24,12 @@ export class ImportServiceComponent {
   .map((response:Response)=><Post[]>response.json());
 
   }
+     featureDetails():Observable<Post[]>{
+
+  
+    return this.http.get('/featureName')
+    .map((response:Response)=><Post[]>response.json());
+ 
+
+  }
 }

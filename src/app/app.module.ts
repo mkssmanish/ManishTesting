@@ -14,11 +14,15 @@ import { ProjectSelectionServiceComponent } from './projectSelection.service';
 import {SelectionComponent } from './projectSelection.component';
 import { ModuleComponent } from './module.component';
 import { FeatureComponent } from './featurePage.component';
+import { TestExecutionComponent } from './testExecution.component';
+import { CaptureLabComponent } from './captureLab.component';
+
+
 import{ModuleServiceComponent} from './modulePage.service';
 import{FeatureServiceComponent} from './featurePage.service';
 import{ImportComponent} from './importPage.component';
 import{ImportServiceComponent} from './importPage.service';
-
+import{ProjectDetailServiceComponent} from './pDetail.service'
 const appRoutes: Routes = [
 { path: '', component: LoginComponent },
 
@@ -48,10 +52,10 @@ children:[
       ,NgbModule,FormsModule
   ],
   declarations: [
-   AppComponent, ProjectDetailComponent,ImportComponent,LoginComponent,SelectionComponent,ModuleComponent,FeatureComponent],
+   AppComponent,TestExecutionComponent , CaptureLabComponent , ProjectDetailComponent,ImportComponent,LoginComponent,SelectionComponent,ModuleComponent,FeatureComponent],
  
  
-  providers: [LoginServiceComponent,ImportServiceComponent,ProjectSelectionServiceComponent,ModuleServiceComponent,FeatureServiceComponent],
+  providers: [LoginServiceComponent,ProjectDetailServiceComponent,ImportServiceComponent,ProjectSelectionServiceComponent,ModuleServiceComponent,FeatureServiceComponent],
   bootstrap: [ AppComponent]
 })
 export class AppModule { }

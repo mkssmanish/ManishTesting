@@ -1,173 +1,125 @@
-      <style>
-  div.j {
-    background-color: lightgrey;
-    width: 50px;
-    border: 2px solid green;
-    padding: 2px;
-    margin: 2px;
-}
-h1 {
-    text-align: center;
-}
-     div.h {
-    float: center;
-  padding : 20px;
-      }
-      div.g {
-    float: right;
-      }
-    
-        div.d {
-          position: absolute;
-          left :0%;
-          width: 188px;
-          height: 300px;
-          border : 3px solid black;
-        }
-        div.a {
-            position: relative;
-            left : 187px;
-            width: 1000px;
-            height: 300px;
-            border: 3px solid black;
-            
-        }
-     /*   th.clicked:active{
-    background-color: yellow;
+<div>  <div class ="g" >
+   <button type="button" style="background-color:blue;" onclick="alert('Admin Page')" >Admin</button>
+       <button type="button" style="background-color:blue;" onclick="alert('Sign Out Successfully')">Sign Out</button>
+   
+   </div>
+<br>
+<br>
+<br>
 
-        }*/
-      
-        body {
-            background-color: cyan;
-             }
+ <h1 > Project Detail </h1>
 
-        table {
-             font-family: arial, sans-serif;
-              border-collapse: collapse;
-              width: 100%;
-              }
-
-          th {
-              border: 1px solid #dddddd;
-              text-align: left;
-              padding: 8px;
-               }  
-
-th.active:{
-  background-color: lightgrey;
-/*color: #fafafa;*/
-/*-webkit-transition: all 0.5s ease;
--moz-transition: all 0.5s ease;
--o-transition: all 0.5s ease;
-transition: all 0.5s ease;*/
-}
-
- .button {
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 13px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 13px;
-    margin: 4px 2px;
-    cursor: pointer;
-}
-
-.button1 {background-color: #008CBA;} /* Blue */
-.button2 {   
-             background-color: #f44336;} /* Red */ 
-.button3 {background-color: #555555;} /* Black */
-
-
-
-        </style>
-
-
-   <div>
-     <div class ="g" >
-
-      <button type="button" style="background-color:blue;" onclick="alert('Admin Page')" >Admin</button>
-          <button type="button" style="background-color:blue;" onclick="alert('Sign Out Successfully')">Sign Out</button>
-      
-      </div>
- <br>
- <br>
- <br>
- 
-    <h1 > Project Detail </h1>
- 
 <h3> ProjectName:{{projectName}} </h3>
-  
+
 
 
 <div class = "d">   
-  <p>    <b>  Modules  </b></p>
+<p>    <b>  Modules  </b></p>
+
+      
+ <div >
+ <ul   *ngFor="let module of moduleName; let s=index">
   
-         
-    <div >
-    <ul>
-        <li>
-            <span (click)="changeShowStatus()" class="active"><i class="glyphicon glyphicon-folder-open">
-      </i> <b> ModuleName</b></span>
-            <ul>
-                <li>
-          <p> </p>
-                  <p><span class="glyphicon glyphicon-file"></span> Child </p>
-          <p><span class="glyphicon glyphicon-file"></span> Grand Child</p>
-                    
-                        
+      <li    (click)="manualtoggle(s)"  class="glyphicon glyphicon-folder-open" >{{module.moduleName}}
+
+<!-- <br><br> -->
+              <ul *ngIf="s===indexvalue" >
+             <li   *ngFor="let child of moduleChild"  class="glyphicon glyphicon-file">
+      
+               {{child.featureName}}  
                      
-                </li>
-
-
+                  
+             </li>
 </ul>
+
 </li>
 </ul>
 </div>
 </div>
-  
- 
-  
-<div class="a" >
-    <table >
-        <tr >
-          <th (click)="changeShowStatus()" class="active"> Test Planning</th>
 
-        
-        <th>Test Execution</th>
-          <th>Report</th>
-        </tr>
-        <tr *ngIf="show==true">
-      
-    <td  ><button (click)="goCreateModule()" class="button button1">CreateModule</button>
-      <router-outlet></router-outlet>  
-<!-- <br>
+
+
+<div class="a" >
+ <table style="height: 444px">
+     <tr style="position: absolute;" >
+       <th (click)="changeShowStatus()" class="active" style="width: 2000px;text-align: center;" [style.background-color] = "show==true ? 'green' : 'cyan'"> Test Planning</th>
+
+     
+     <th style="width: 1828px;text-align: center;" (click)="showTestExecution()" class="active" [style.background-color] = "testExecution==true ? 'green' : 'cyan'" >Test Execution</th>
+
+
+    <th style="text-align: center;">Report</th>
+     </tr>
+     <td *ngIf="show==true" >
+       <div style="margin-top: -319px;position: absolute;">
+         <table style="width: 1215px;">
+           <th (click)="goCreateModule()" style="text-align: center">CreateModule</th>
+           
+
+           <th (click)="goCreateFeature()" style="text-align: center">CreateFeature</th>
+           
+
+           <th (click)="goImport()" style="text-align: center">ImportScript</th>
+           
+         </table>
+     
+     
+         
+         <app-module *ngIf="displayModule==true"></app-module>
+     <app-feature *ngIf="displayFeature==true"></app-feature>
+     <app-import *ngIf="displayImport==true"></app-import>
+     </div>
+     </td>
+     
+     
+     
+     <div style="width: 1px;height: 700px">
+     <tr style="height: 500px">
+        <td *ngIf="testExecution==true">
+            <div style="margin-top: -190px;position: absolute;">
+                <table style="width: 1213px;margin-top: -29px">
+                    <th (click)="mobile()" style="text-align: center">Mobile</th>         
+         
+                    <th (click)="execution()" style="text-align: center">Execution</th>
+                                                   
+                  </table>
+             </div>
+         </td>
+<!--       
+ <td *ngIf="show==true" >
+   <button (click)="goCreateModule()" class="button button1" style="margin-left: 100px">CreateModule</button>
+<app-module *ngIf="displayModule==true"></app-module>
+ 
+<! <br>
 <br>
 <app-module></app-module> -->
-     </td>
+  <!-- </td> -->
 
+ <!-- <td *ngIf="show==true"><button (click)="goCreateFeature()" class="button button2" style="margin-left: 100px">CreateFeature</button>
+<app-feature *ngIf="displayFeature==true"></app-feature>
 
-    <td ><button (click)="goCreateFeature()" class="button button2" >CreateFeature</button>
+ </td>
 
- <router-outlet></router-outlet>  
-
-    </td>
-
-     <td ><button (click)="goImport()" class="button button3">ImportScript</button>
-
-     </td>
+  <td *ngIf="show==true"><button (click)="goImport()" class="button button3" style="margin-left: 100px">ImportScript</button>
+<app-import *ngIf="displayImport==true"></app-import>
+  </td>
+  <td *ngIf="show==true"> <button style="background-color:green;margin-left: 100px;padding: 5px;width: 80px">save </button></td> --> 
+  
+<!-- <td *ngIf="testExecution==true" style="width: 783px;"><app-test></app-test></td> -->
+ <td *ngIf="mo==true"><app-cap></app-cap></td>
+ <td *ngIf="execute==true"><app-test></app-test> </td>
 </tr>
 
-  <tr>
-     <td> </td>
-     <td> </td>
-     <td>  <br><br> <br><br><br> <center><button style="background-color:green;">save </button></center></td>
-    </tr>
-      </table>
-     
+
+<!-- <tr> -->
+ <!--  <td> </td>
+  <td> </td> -->
+ <!--  <td>  <br><br> <br><br><br><button style="background-color:green;">save </button></td>
+ </tr> -->
 </div>
-  <router-outlet></router-outlet>  
+   </table>
+  
+</div>
+<router-outlet></router-outlet>  
 </div>
 
